@@ -9,3 +9,4 @@ variable "clusterName" {
   type        = string
   default     = "vprofile-EKS"
 }
+## End of terraform/variables.tf
