@@ -65,9 +65,8 @@ jobs:
           aws-region: us-east-1
       - name: get kubeconfig
         id: getkubeconfig
-        if: steps.apply.outcome == 'success' || steps.plan.outcome == 'success'
+        if: steps.apply.outcome == 'success'
         run: aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.EKS_CLUSTER }}
       - name: install ingress
         if: steps.apply.outcome == 'success' && steps.getkubeconfig.outcome == 'success'
         run: kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.1/deploy/static/provider/aws/deploy.yaml
-
